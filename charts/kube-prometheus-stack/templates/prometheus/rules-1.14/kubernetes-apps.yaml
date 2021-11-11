@@ -283,18 +283,18 @@ spec:
 {{- if .Values.defaultRules.additionalRuleLabels }}
 {{ toYaml .Values.defaultRules.additionalRuleLabels | indent 8 }}
 {{- end }}
-    - alert: KubeHpaMaxedOut
-      annotations:
-        description: HPA {{`{{`}} $labels.namespace {{`}}`}}/{{`{{`}} $labels.horizontalpodautoscaler  {{`}}`}} has been running at max replicas for longer than 15 minutes.
-        runbook_url: {{ .Values.defaultRules.runbookUrl }}alert-name-kubehpamaxedout
-        summary: HPA is running at max replicas
-      expr: |-
-        kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics", namespace=~"{{ $targetNamespace }}"}
-          ==
-        kube_horizontalpodautoscaler_spec_max_replicas{job="kube-state-metrics", namespace=~"{{ $targetNamespace }}"}
-      for: 15m
-      labels:
-        severity: warning
+#- alert: KubeHpaMaxedOut
+#annotations:
+#description: HPA {{`{{`}} $labels.namespace {{`}}`}}/{{`{{`}} $labels.horizontalpodautoscaler  {{`}}`}} has been running at max replicas for longer than 15 minutes.
+#runbook_url: {{ .Values.defaultRules.runbookUrl }}alert-name-kubehpamaxedout
+#summary: HPA is running at max replicas
+#expr: |-
+#kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics", namespace=~"{{ $targetNamespace }}"}
+#==
+#kube_horizontalpodautoscaler_spec_max_replicas{job="kube-state-metrics", namespace=~"{{ $targetNamespace }}"}
+#for: 15m
+#labels:
+#severity: warning
 {{- if .Values.defaultRules.additionalRuleLabels }}
 {{ toYaml .Values.defaultRules.additionalRuleLabels | indent 8 }}
 {{- end }}

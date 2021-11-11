@@ -151,15 +151,15 @@ spec:
 {{- if .Values.defaultRules.additionalRuleLabels }}
 {{ toYaml .Values.defaultRules.additionalRuleLabels | indent 8 }}
 {{- end }}
-    - alert: PrometheusOutOfOrderTimestamps
-      annotations:
-        description: Prometheus {{`{{`}}$labels.namespace{{`}}`}}/{{`{{`}}$labels.pod{{`}}`}} is dropping {{`{{`}} printf "%.4g" $value  {{`}}`}} samples/s with timestamps arriving out of order.
-        runbook_url: {{ .Values.defaultRules.runbookUrl }}alert-name-prometheusoutofordertimestamps
-        summary: Prometheus drops samples with out-of-order timestamps.
-      expr: rate(prometheus_target_scrapes_sample_out_of_order_total{job="{{ $prometheusJob }}",namespace="{{ $namespace }}"}[5m]) > 0
-      for: 10m
-      labels:
-        severity: warning
+#- alert: PrometheusOutOfOrderTimestamps
+#annotations:
+#description: Prometheus {{`{{`}}$labels.namespace{{`}}`}}/{{`{{`}}$labels.pod{{`}}`}} is dropping {{`{{`}} printf "%.4g" $value  {{`}}`}} samples/s with timestamps arriving out of order.
+#runbook_url: {{ .Values.defaultRules.runbookUrl }}alert-name-prometheusoutofordertimestamps
+#summary: Prometheus drops samples with out-of-order timestamps.
+#expr: rate(prometheus_target_scrapes_sample_out_of_order_total{job="{{ $prometheusJob }}",namespace="{{ $namespace }}"}[5m]) > 0
+#for: 10m
+#labels:
+#severity: warning
 {{- if .Values.defaultRules.additionalRuleLabels }}
 {{ toYaml .Values.defaultRules.additionalRuleLabels | indent 8 }}
 {{- end }}
